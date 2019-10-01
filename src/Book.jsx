@@ -3,7 +3,7 @@ import { ThemeContext } from "./AppWrapper";
 class Book extends Component {
   constructor(props) {
     super(props);
-    this.state = { currentDate: new Date(), liked: false };
+    this.state = { currentDate: new Date(), liked: this.props.values.liked };
   }
   componentDidMount() {
     this.timerID = setInterval(() => this.tick(), 1000);
@@ -19,12 +19,9 @@ class Book extends Component {
 
   handleLikeClick = e => {
     e.preventDefault();
-    console.log(this.context.theme);
-    this.setState(prevState => ({
-      ...this.state.currentDate,
-      liked: !this.state.liked
-    }));
+    this.props.toggleLike(this.props.values.id);
   };
+
   //// color: this.state.liked ? "green" : this.context.theme doesnt work cause theme is an entire object, gotta get the color property directly
   render() {
     let { title, author, year, pages, cover } = this.props.values;

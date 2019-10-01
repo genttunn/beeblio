@@ -1,14 +1,17 @@
 import React, { Component } from "react";
 import App from "./App";
 
-export const ThemeContext = React.createContext();
+export let ThemeContext = React.createContext({
+  theme: null,
+  setTheme: () => {}
+});
 //// this ThemeContext can go anywhere, inn another file even. Thats prolly the best way to put it.
 //// To use, import it to the wrapper of context (bigger level of component needed))
 //// In wrapper pass values. These values can then be accessed by any child of the wrapper.
 //// For children: import the ThemeContext, set Children.contextType = ThemeContext at end of code;
 //// Then access the context object with this.context
 
-const themes = {
+export let themes = {
   light: {
     background: "#fefefe",
     foreground: "#333333",
